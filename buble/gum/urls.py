@@ -8,5 +8,6 @@ app_name = 'gum'
 urlpatterns = [
     path('index', views.index, name='index'),
     path('regform', views.regform, name='regform'),
-    path(),
+    
+    
 ]

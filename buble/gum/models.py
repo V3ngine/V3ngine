@@ -21,7 +21,7 @@ class CreatePost(models.Model):
     uid = models.AutoField(primary_key=True)
     title = models.CharField(max_length=100)
     message = models.TextField(max_length=1000)
-    pab_date = models.DateTimeField(auto_now_add=True)
+    pub_date = models.DateTimeField(auto_now_add=True)
     author = models.CharField(max_length=30)
 
     class Meta:

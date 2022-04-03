@@ -2,9 +2,9 @@ from django import forms
 
 
 class LoginForm(forms.Form):
-    name = forms.CharField(required=True)
-    password = forms.CharField(widget=forms.PasswordInput(), required=True)
-    mail = forms.EmailField(required=True)
+    name = forms.CharField(label='Имя пользователя', required=True)
+    password = forms.CharField(label='Пароль', widget=forms.PasswordInput(), required=True)
+    mail = forms.EmailField(label='Электронная почта', required=True)
 
 
 class PostForm(forms.Form):

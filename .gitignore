@@ -1,0 +1,7 @@
+.idea
+main.py
+v3ngine
+.vscode
+requirements.txt
+__pycache__
+buble/gum/management/commands/__pycache__/fake_commands.cpython-39.pyc

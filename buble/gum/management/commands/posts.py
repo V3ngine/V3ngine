@@ -7,7 +7,7 @@ from gum.models import CreatePost
 class Command(BaseCommand):
     help = 'Create posts from Faker'
 
-    def add_arguments(self, parser) -> None:
+    def add_arguments(self, parser) -> str:
         parser.add_argument('argm',type=int)
    
     

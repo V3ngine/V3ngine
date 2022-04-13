@@ -8,6 +8,6 @@ class LoginForm(forms.Form):
 
 
 class PostForm(forms.Form):
-    title = forms.CharField(max_length=100)
-    message = forms.CharField(max_length=1000, widget=forms.Textarea())
-    author = forms.CharField(max_length=30)
+    title = forms.CharField(label='Заголовок',max_length=100)
+    message = forms.CharField(label='Пост',max_length=1000, widget=forms.Textarea())
+    author = forms.CharField(label='Автор',max_length=30)

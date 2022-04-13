@@ -1,10 +1,12 @@
+from audioop import reverse
 from django.db import models
+from django.shortcuts import redirect
 
 # Create your models here.
 
 
 class CreateUsers(models.Model):
-    uid = models.AutoField(primary_key=True)
+    id = models.AutoField(primary_key=True)
     name = models.CharField( unique=True, max_length=50)
     password = models.CharField( max_length=30)
     mail = models.EmailField( max_length=50)
@@ -14,11 +16,13 @@ class CreateUsers(models.Model):
         verbose_name_plural = 'Пользователи'
 
     def __str__(self) -> str:
-        return f'title : {self.name} uid : {self.uid}'
+        return f'title : {self.name} , id : {self.id}'
+
+
 
 
 class CreatePost(models.Model):
-    uid = models.AutoField(primary_key=True)
+    id = models.AutoField(primary_key=True)
     title = models.CharField(max_length=100)
     message = models.TextField(max_length=1000)
     pub_date = models.DateTimeField(auto_now_add=True)
@@ -27,6 +31,12 @@ class CreatePost(models.Model):
     class Meta:
         verbose_name = 'Пост'
         verbose_name_plural = 'Посты'
+        ordering = ['-pub_date']
 
     def __str__(self) -> str:
-        return f'title : {self.title} uid : {self.uid}'
+        return f'title : {self.title} id : {self.id}'
+
+    
+    def get_absolute_url(self):
+        return  f'/all_posts'
+

@@ -77,5 +77,6 @@ class UpDate(UpdateView):
 
 class DeletePost(DeleteView):
     model = CreatePost
-    template_name = 'solution.html'
+    template_name = 'delete_post.html'
     fields = ['title', 'message']
+    success_url = '/all_posts/'

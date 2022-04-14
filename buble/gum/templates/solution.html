@@ -3,13 +3,14 @@
 
 {% block solution %}
 
-<form action=" "method="post" class="form-control">
+ <div class="conteiner">
+    <form action=" "method="post" class="form-control">
 
-    {{form.as_p}}
-    {%csrf_token%}
+        {{form.as_p}}
+        {%csrf_token%}
 
-    <button type="submit" class="btn-succes">Обновить</button>
-</form>
-
+        <button type="submit" class="btn btn-success">Обновить статью</button>
+    </form>  
+ </div>
 
 {% endblock %}

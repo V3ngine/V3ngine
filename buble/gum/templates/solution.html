@@ -3,14 +3,20 @@
 
 {% block solution %}
 
- <div class="conteiner">
-    <form action=" "method="post" class="form-control">
+<div class="conteiner d-flex">
+    <div class="row">
+        <div class="col-12">
 
-        {{form.as_p}}
-        {%csrf_token%}
+            <form action=" "method="post" class="form-control">
 
-        <button type="submit" class="btn btn-success">Обновить статью</button>
-    </form>  
- </div>
+                {{form.as_p}}
+                {%csrf_token%}
+    
+                <button type="submit" class="btn btn-success">Обновить пост</button>
+            </form>
+
+        </div>
+    </div>
+</div>
 
 {% endblock %}

@@ -1,4 +1,5 @@
 from audioop import reverse
+from distutils.command.upload import upload
 from django.db import models
 from django.shortcuts import redirect
 
@@ -24,6 +25,7 @@ class CreateUsers(models.Model):
 class CreatePost(models.Model):
     id = models.AutoField(primary_key=True)
     title = models.CharField(max_length=100)
+    image = models.ImageField(upload_to='post_img',blank=True)
     message = models.TextField(max_length=1000)
     pub_date = models.DateTimeField(auto_now_add=True)
     author = models.CharField(max_length=30)

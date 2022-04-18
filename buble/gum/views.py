@@ -49,7 +49,7 @@ def crud_form(request):
 
 
 class PostView(ListView):
-    paginate_by = 5
+    paginate_by = 3
     model = CreatePost
     template_name = 'all_posts.html'
     context_object_name = 'all_posts'

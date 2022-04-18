@@ -84,6 +84,21 @@
               {% block home %}
               {% endblock %}
 
+              <nav aria-label="base pagination col-8">
+                  <ul class="pagination justify-content-center">
+
+                    {% for pagination in paginator.page_range %}
+                      {% if page_obj.number == pagination %}
+                      <li class="page-item active"  aria-current="page"><a href="http://" class="page-link">{{pagination}}</a></li>
+                      {% else %}
+                      <li class="page-item">
+                      <a href="?page={{pagination}}" class="page-link">{{pagination}}</a>
+                      </li>
+                      {% endif %}
+                    {% endfor %}
+
+                  </ul>
+              </nav>
 
 
 

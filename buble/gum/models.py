@@ -1,7 +1,5 @@
-from audioop import reverse
-from distutils.command.upload import upload
 from django.db import models
-from django.shortcuts import redirect
+
 
 # Create your models here.
 
@@ -33,7 +31,7 @@ class CreatePost(models.Model):
     class Meta:
         verbose_name = 'Пост'
         verbose_name_plural = 'Посты'
-        ordering = ['-pub_date']
+        ordering = ['id']
 
     def __str__(self) -> str:
         return f'title : {self.title} id : {self.id}'

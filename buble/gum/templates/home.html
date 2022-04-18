@@ -2,7 +2,7 @@
 
 {% block title %} {{post.title}} {% endblock %}
 
-{% block all_posts %}
+{% block home %}
 
     <div class="conteiner">
         <div class="row">
@@ -11,8 +11,7 @@
                 {% for post in all_posts %}
                 <h5>{{post.title}}</h3>
                 <p>{{post.author}}</p>
-                <b>{{post.pub_date}}</b>
-                <p><a href="{% url 'gum:detail' post.id %}" class="btn btn-primary">Подробнее</a></p>
+                <p><a href="{% url 'gum:detail' post.id %}" class="btn btn-link">Подробнее</a></p>
                 <div>-------</div>
                 {% endfor %}
             

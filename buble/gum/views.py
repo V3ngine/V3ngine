@@ -1,7 +1,6 @@
-from email import message
+
 from re import template
-from attr import fields
-from django.views.generic import DetailView, UpdateView, DeleteView
+from django.views.generic import DetailView, UpdateView, DeleteView,ListView
 from django.http import HttpResponse
 from django.shortcuts import redirect, render
 
@@ -29,13 +28,6 @@ def base(request):
     return render(request, 'base.html') 
 
 
-def all_posts(request):
-
-    pub_posts = CreatePost.objects.all()
-
-    return render(request, 'all_posts.html', {'all_posts':pub_posts})
-
-
 def crud_form(request):
     if request.method == "POST":
         form_post = PostForm(request.POST)
@@ -56,13 +48,12 @@ def crud_form(request):
     return render(request, 'crud_form.html',  data)
 
 
-# def detail_post(request, str):
-#     detail = CreatePost.objects.all().filter(id=str)
+class PostView(ListView):
+    paginate_by = 5
+    model = CreatePost
+    template_name = 'all_posts.html'
+    context_object_name = 'all_posts'
 
-#     data = {
-#         'post': detail
-#     }
-#     return render(request, 'detail.html', data )
 
 class DetailPost(DetailView):
     model = CreatePost
@@ -80,3 +71,25 @@ class DeletePost(DeleteView):
     template_name = 'delete_post.html'
     fields = ['title', 'message']
     success_url = '/all_posts/'
+
+class HomeView(ListView):
+    model = CreatePost
+    template_name = 'home.html'
+    context_object_name = 'all_posts'
+    queryset = CreatePost.objects.all()[:4]
+
+
+# def all_posts(request):
+
+#     pub_posts = CreatePost.objects.all()
+
+#     return render(request, 'all_posts.html', {'all_posts':pub_posts})
+
+
+# def detail_post(request, str):
+#     detail = CreatePost.objects.all().filter(id=str)
+
+#     data = {
+#         'post': detail
+#     }
+#     return render(request, 'detail.html', data )

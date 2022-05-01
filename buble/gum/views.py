@@ -1,11 +1,12 @@
 
 from re import template
+from unicodedata import category
 from django.views.generic import DetailView, UpdateView, DeleteView,ListView
 from django.http import HttpResponse
 from django.shortcuts import redirect, render
 
 from .forms import LoginForm
-from .models import CreatePost
+from .models import Category, CreatePost
 from .forms import PostForm
 
 
@@ -66,17 +67,30 @@ class UpDate(UpdateView):
     template_name = 'solution.html'
     fields = ['title', 'message']
 
+
 class DeletePost(DeleteView):
     model = CreatePost
     template_name = 'delete_post.html'
     fields = ['title', 'message']
     success_url = '/all_posts/'
 
+
 class HomeView(ListView):
-    model = CreatePost
+    model = Category
     template_name = 'home.html'
     context_object_name = 'all_posts'
-    queryset = CreatePost.objects.all()[:4]
+    queryset = Category.objects.all()[2:]
+
+
+class ShowProdacts(ListView):
+    model = CreatePost
+    template_name = 'all_posts.html'
+    context_object_name = 'all_posts'
+   
+    def get_queryset(self):
+        group =  CreatePost.objects.filter(category_id=self.kwargs['category_id'])
+        return group
+
 
 
 # def all_posts(request):

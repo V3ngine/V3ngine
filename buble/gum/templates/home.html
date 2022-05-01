@@ -4,18 +4,19 @@
 
 {% block home %}
 
-    <div class="conteiner">
-        <div class="row">
-            <div class="col-md-8">
+    <div class="conteiner ">
+        <div class="row justify-content-center"> 
+        {% for post in all_posts %}
+            <div class="col-5 mx-1">
+                <div class=" ">
+                    {%if post.image%}
+                        <img class="card-img rounded " src="{{post.image.url}}" alt="PICTURE">
+                    {%endif%}
+                    <a href="{% url 'gum:category' post.id %}" class="btn btn-link"><h5>{{post.name}}</h3></a>
 
-                {% for post in all_posts %}
-                <h5>{{post.title}}</h3>
-                <p>{{post.author}}</p>
-                <p><a href="{% url 'gum:detail' post.id %}" class="btn btn-link">Подробнее</a></p>
-                <div>-------</div>
-                {% endfor %}
-            
+                </div>
             </div>
+        {% endfor %}
         </div>
     </div>
      

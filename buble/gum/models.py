@@ -1,14 +1,15 @@
 from django.db import models
+from django.urls import reverse
+
 
 
 # Create your models here.
 
 
 class CreateUsers(models.Model):
-    id = models.AutoField(primary_key=True)
-    name = models.CharField( unique=True, max_length=50)
+    name = models.CharField(max_length=50, unique=True,)
     password = models.CharField( max_length=30)
-    mail = models.EmailField( max_length=50)
+    mail = models.EmailField( max_length=50, unique=True)
 
     class Meta:
         verbose_name = 'Пользователь'
@@ -43,15 +44,14 @@ class CreatePost(models.Model):
     class Meta:
         verbose_name = 'Пост'
         verbose_name_plural = 'Посты'
-        ordering = ['id']
+        ordering = ['-id']
 
     def __str__(self) -> str:
         return f'title : {self.title} id : {self.id}'
 
     
     def get_absolute_url(self):
-        return  f'/all_posts'
-
+        return f'all_posts'
     
     
 

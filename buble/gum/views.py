@@ -1,6 +1,4 @@
 
-from re import template
-from unicodedata import category
 from django.views.generic import DetailView, UpdateView, DeleteView,ListView
 from django.http import HttpResponse
 from django.shortcuts import redirect, render
@@ -21,6 +19,8 @@ def regform(request):
         form = LoginForm(request.POST)
         if form.is_valid():
             print(form.cleaned_data)
+            form.save()
+            return redirect('gum:home')
     form = LoginForm()
     return render(request, 'regforms.html', {'form': form})
 
@@ -36,7 +36,7 @@ def crud_form(request):
             create_post = CreatePost()
             create_post.title = form_post.cleaned_data['title']
             create_post.message = form_post.cleaned_data['message']
-            create_post.author = form_post.cleaned_data['author']
+            # create_post.author = form_post.cleaned_data['author']
             create_post.save()
             print(form_post.cleaned_data)
             return redirect('gum:all_posts')
@@ -64,9 +64,15 @@ class DetailPost(DetailView):
 
 class UpDate(UpdateView):
     model = CreatePost
+    form_class = PostForm
     template_name = 'solution.html'
-    fields = ['title', 'message']
+   
 
+    def form_valid(self, form):
+        if form.is_valid():
+            response = form.save()
+            response.save()
+            return redirect('gum:category')
 
 class DeletePost(DeleteView):
     model = CreatePost
@@ -83,7 +89,7 @@ class HomeView(ListView):
 
 
 class ShowProdacts(ListView):
-    model = CreatePost
+    model = Category
     template_name = 'all_posts.html'
     context_object_name = 'all_posts'
    

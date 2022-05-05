@@ -5,9 +5,9 @@
 {% block home %}
 
     <div class="conteiner ">
-        <div class="row justify-content-center"> 
+        <div class="row "> 
         {% for post in all_posts %}
-            <div class="col-5 mx-1">
+            <div class="col-6 mx-auto">
                 <div class=" ">
                     {%if post.image%}
                         <img class="card-img rounded " src="{{post.image.url}}" alt="PICTURE">

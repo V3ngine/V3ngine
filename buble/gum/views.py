@@ -50,7 +50,7 @@ def crud_form(request):
 
 
 class PostView(ListView):
-    paginate_by = 3
+    paginate_by = 4
     model = CreatePost
     template_name = 'all_posts.html'
     context_object_name = 'all_posts'
@@ -70,9 +70,9 @@ class UpDate(UpdateView):
 
     def form_valid(self, form):
         if form.is_valid():
-            response = form.save()
-            response.save()
-            return redirect('gum:category')
+            form.save()
+            return redirect('gum:home')
+
 
 class DeletePost(DeleteView):
     model = CreatePost

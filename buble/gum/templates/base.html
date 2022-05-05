@@ -17,12 +17,12 @@
     <title>{{title}}</title>
 
 </head>
-<body> 
+<body class="container" > 
 
-  <div class="wraper conteiner">
+  <div class="wraper">
    
-        <nav class="navbar navbar-expand-md navbar-dark fixed-top bg-dark">
-          <div class="container-fluid">
+        <nav class="navbar navbar-expand-md navbar-dark fixed-top bg-dark ">
+          <div class="container">
             <a class="navbar-brand" href="{% url 'gum:home' %}">
               <font style="vertical-align: inherit;"> Boar </font></a>
   
@@ -59,8 +59,8 @@
         </nav>
         
         <div class="conteiner py-5 mt-4">
-          <div class="row">
-            <div class="col">
+          <div class="row justify-content-center">
+            <div class="col-10 ">
 
               {% block all_posts %}
               {% endblock %}
@@ -87,51 +87,63 @@
           </div>
         </div>    
 
-        <div class="conteiner">
-          <div class="row">
-            <div class="col-8">
+  </div>
 
-              <nav aria-label="base pagination ">
-                      <ul class="pagination justify-content-center my-2">
-    
-                        {% if page_obj.has_previous %}
-    
-                        <li class="page-item">
-                          <a href="?page={{page_obj.previous_page_number}}" class="page-link rounded-circle my-2 mx-2">&lt;</a>
-                        </li>
-    
-                        {% endif %}
-    
-                        {% for pagination in paginator.page_range %}
-                        {% if page_obj.number == pagination %}
-    
-                        <li class="page-item active "  aria-current="page"><a href="http://" class="page-link rounded-circle my-2 mx-2">{{pagination}}</a></li>
-    
-                        {% elif pagination >= page_obj.number|add:-2 and pagination <= page_obj.number|add:2  %}
-                        
-                        <li class="page-item">
-                          <a href="?page={{pagination}}" class="page-link rounded-circle my-2 mx-2">{{pagination}}</a>
-                        </li>
-    
-                        {% endif %}
-                        {% endfor %}
-    
-                        {% if page_obj.has_next %}
-    
-                        <li class="page-item">
-                          <a href="?page={{page_obj.next_page_number}}" class="page-link rounded-circle my-2 mx-2">&gt;</a>
-                        </li>
-    
-                        {% endif %}
-    
-                      </ul>
-                </nav>
-    
-                    
-            </div>
-          </div>
-        </div>
+  
+  <div class="conteiner">
+    <div class="row justify-content-center mb-5 fixed-bottom">
+      <div class="col-4">
 
+        <nav aria-label="base pagination">
+                <ul class="pagination">
+
+                  {% if page_obj.has_previous %}
+
+                  <li class="page-item">
+                    <a href="?page={{page_obj.previous_page_number}}" class="page-link rounded-circle my-2 mx-2">&lt;</a>
+                  </li>
+
+                  {% endif %}
+
+                  {% for pagination in paginator.page_range %}
+                  {% if page_obj.number == pagination %}
+
+                  <li class="page-item active "  aria-current="page"><a href="http://" class="page-link rounded-circle my-2 mx-2">{{pagination}}</a></li>
+
+                  {% elif pagination >= page_obj.number|add:-2 and pagination <= page_obj.number|add:2  %}
+                  
+                  <li class="page-item">
+                    <a href="?page={{pagination}}" class="page-link rounded-circle my-2 mx-2">{{pagination}}</a>
+                  </li>
+
+                  {% endif %}
+                  {% endfor %}
+
+                  {% if page_obj.has_next %}
+
+                  <li class="page-item">
+                    <a href="?page={{page_obj.next_page_number}}" class="page-link rounded-circle my-2 mx-2">&gt;</a>
+                  </li>
+
+                  {% endif %}
+
+                </ul>
+          </nav>
+
+          
+              
+      </div>
+    </div>
+  </div>
+
+  <div class="conteiner footer ">
+    <div class="row text-center justify-content-center    ">
+      <div class="col-6 ">
+        <footer class="fixed-bottom bg-secondary py-3">
+          copyright&copy;
+        </footer>
+      </div>
+    </div>
   </div>
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" 

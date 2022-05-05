@@ -7,9 +7,10 @@ from django.urls import reverse
 
 
 class CreateUsers(models.Model):
-    name = models.CharField(max_length=50, unique=True,)
-    password = models.CharField( max_length=30)
-    mail = models.EmailField( max_length=50, unique=True)
+    name = models.CharField(max_length=255, verbose_name='Название')
+    password = models.CharField( max_length=255, verbose_name='Пароль')
+    mail = models.EmailField( max_length=255, verbose_name='Почта')
+    pub_date = models.DateTimeField(auto_now_add=True, null=True, verbose_name='Дата регистрации')
 
     class Meta:
         verbose_name = 'Пользователь'
@@ -20,8 +21,8 @@ class CreateUsers(models.Model):
 
 
 class Category(models.Model):
-    name = models.CharField(max_length=30, db_index=True)
-    image = models.ImageField(upload_to='category', null=True)
+    name = models.CharField(max_length=30, db_index=True, verbose_name='Название')
+    image = models.ImageField(upload_to='category', null=True, verbose_name='Фото')
     
     class Meta:
         verbose_name_plural = 'Категории'
@@ -29,16 +30,16 @@ class Category(models.Model):
     def __str__(self) -> str:
         return f'title : {self.name} , id : {self.id}'
 
-    # def get_absolute_url(self):
-    #     return reverse('category', kwargs={'category_id': self.pk})
+    def get_absolute_url(self):
+        return reverse('gum:category', kwargs={'category_id': self.pk})
     
 
 class CreatePost(models.Model):
-    title = models.CharField(max_length=100)
-    image = models.ImageField(upload_to='post_img',blank=True)
+    title = models.CharField(max_length=100, verbose_name='Заголовок')
+    image = models.ImageField(upload_to='post_img',blank=True, verbose_name='Фото')
     message = models.TextField(max_length=1000)
-    pub_date = models.DateTimeField(auto_now_add=True)
-    author = models.CharField(max_length=30)
+    pub_date = models.DateTimeField(auto_now_add=True, verbose_name='Дата публикации')
+    author = models.CharField(max_length=30, verbose_name='Авторы')
     category = models.ForeignKey('Category', on_delete=models.CASCADE, null=True)
 
     class Meta:
@@ -51,7 +52,7 @@ class CreatePost(models.Model):
 
     
     def get_absolute_url(self):
-        return f'all_posts'
+        return reverse('gum:detail', kwargs={'pk': self.id})
     
     
 

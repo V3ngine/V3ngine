@@ -48,7 +48,7 @@ class CreatePost(models.Model):
         ordering = ['-id']
 
     def __str__(self) -> str:
-        return f'title : {self.title} id : {self.id}'
+        return f'Статья : {self.title} id : {self.id}'
 
     
     def get_absolute_url(self):

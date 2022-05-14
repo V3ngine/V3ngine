@@ -8,6 +8,7 @@ class PostAdmin(admin.ModelAdmin):
     list_display = ('id', 'title', 'image', 'pub_date')
     search_fields = ('title',)
     list_filter = ('pub_date', )
+    empty_value_display = '-empty-'
     
 
 
